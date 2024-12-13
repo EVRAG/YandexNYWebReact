@@ -77,7 +77,7 @@ export default function Home() {
     0: <Greeting onClick={nextSlide} />,
     1: <Desire onClick={sendReq} />,
     2: <RequestLoader isLoading={isLoading} onFinishedRequest={nextSlide} />,
-    3: <FinalSection data={fetchedData} onClick={nextSlide} />,
+    3: <FinalSection data={fetchedData || "Default value"} onClick={nextSlide} />, // Используем значение по умолчанию
   };
 
   return (
