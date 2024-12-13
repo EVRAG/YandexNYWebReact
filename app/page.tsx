@@ -1,12 +1,16 @@
-'use client';
+import { useCallback, useState } from 'react';
+import Image from 'next/image';
 import Desire from '@/components/desire';
 import FinalSection from '@/components/FinalSection';
 import Greeting from '@/components/greeting';
 import RequestLoader from '@/components/request-loader';
 import { cn } from '@/utils/cn';
 import { pxToVw } from '@/utils/pxToVw';
-import Image from 'next/image';
-import { useCallback, useState } from 'react';
+
+interface Data {
+  text: string;
+  cardUrl: string;
+}
 
 const steps = [
   {
@@ -35,7 +39,7 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [fetchedData, setFetchedData] = useState(null);
+  const [fetchedData, setFetchedData] = useState<Data | null>(null);
 
   const handleChangeSlide = useCallback((newIndex: number) => {
     setIsFadingOut(true);
@@ -64,7 +68,7 @@ export default function Home() {
         body: JSON.stringify({ text: str }),
       });
 
-      const data = await res.json();
+      const data: Data = await res.json();
       setFetchedData(data);
     } catch (error) {
       console.error('Ошибка при отправке запроса:', error);
@@ -73,11 +77,16 @@ export default function Home() {
     }
   }
 
+  const defaultData: Data = {
+    text: 'Default value',
+    cardUrl: 'https://example.com/default',
+  };
+
   const componentByStep = {
     0: <Greeting onClick={nextSlide} />,
     1: <Desire onClick={sendReq} />,
     2: <RequestLoader isLoading={isLoading} onFinishedRequest={nextSlide} />,
-    3: <FinalSection data={fetchedData || "Default value"} onClick={nextSlide} />, // Используем значение по умолчанию
+    3: <FinalSection data={fetchedData || defaultData} onClick={nextSlide} />,
   };
 
   return (
@@ -94,21 +103,19 @@ export default function Home() {
         width: currentIndex === 3 ? pxToVw(1320) : '78%',
       }}
     >
-      {steps.map((item, index) => {
-        return (
-          <Image
-            key={index}
-            src={item.imageSrc}
-            fill
-            alt='bg-area'
-            className={cn(
-              'transition-opacity duration-300 z-[-1] opacity-0 object-cover',
-              index === currentIndex && !isFadingOut && 'opacity-100',
-              index !== currentIndex && !isFadingOut && 'opacity-0'
-            )}
-          />
-        );
-      })}
+      {steps.map((item, index) => (
+        <Image
+          key={index}
+          src={item.imageSrc}
+          fill
+          alt="bg-area"
+          className={cn(
+            'transition-opacity duration-300 z-[-1] opacity-0 object-cover',
+            index === currentIndex && !isFadingOut && 'opacity-100',
+            index !== currentIndex && !isFadingOut && 'opacity-0'
+          )}
+        />
+      ))}
       <div
         className={cn('w-full h-full relative transition-all')}
         style={{
