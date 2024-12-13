@@ -43,7 +43,7 @@ const FinalSection = ({ data, onClick }: Props) => {
         <h2
           className='text-center text-white leading-[104%]'
           style={{
-            fontSize: `clamp(${pxToVw(50)}, 2vw, ${pxToVw(60)})`,
+            fontSize: `clamp(${pxToVw(43)}, 2vw, ${pxToVw(60)})`,
           }}
         >
           {data.text}
