@@ -1,5 +1,5 @@
 import { pxToVw } from '@/utils/pxToVw';
-
+import Image from 'next/image';
 interface Props {
   onClick: () => void;
 }
@@ -15,8 +15,11 @@ const Greeting = ({ onClick }: Props) => {
           paddingBottom: pxToVw(20),
         }}
       >
-        <img
+        <Image
           src='/icons/brightness_empty.svg'
+          alt='Brightness icon' // Обязательно укажите alt
+          width={64} // Укажите ширину
+          height={64} // Укажите высоту
           style={{
             width: pxToVw(64),
             height: pxToVw(64),

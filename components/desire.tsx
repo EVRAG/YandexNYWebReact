@@ -38,12 +38,11 @@ const Desire = ({ onClick }: Props) => {
     setCursorPosition(cursorPosition + space.length + phrase.length);
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setUserInput(e.target.value);
-    setCursorPosition(e.target.selectionStart);
   };
 
-  const handleKeyPress = (button: any) => {
+  const handleKeyPress = (button: string) => {
     let newInput = userInput;
 
     if (button === '{bksp}') {
@@ -107,7 +106,7 @@ const Desire = ({ onClick }: Props) => {
         inputMode='none'
         value={userInput}
         onChange={handleChange}
-        // @ts-ignore
+        // @ts-expect-error
         onSelect={(e) => setCursorPosition(e.target.selectionStart)}
         ref={(ref) => {
           if (ref) {

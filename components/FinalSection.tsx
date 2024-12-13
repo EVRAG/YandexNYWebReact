@@ -2,9 +2,10 @@ import { pxToVw } from '@/utils/pxToVw';
 import { QRCodeCanvas } from 'qrcode.react';
 
 interface Props {
-  data: any;
+  data: string | number | string[]; // строка, число или массив строк
   onClick: () => void;
 }
+
 const FinalSection = ({ data, onClick }: Props) => {
   return (
     <>
