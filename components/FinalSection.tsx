@@ -1,9 +1,14 @@
 import { pxToVw } from '@/utils/pxToVw';
 import { QRCodeCanvas } from 'qrcode.react';
 
+interface Data {
+  text: string; // Поле с текстом
+  cardUrl: string; // URL для QR-кода
+}
+
 interface Props {
-  data: string | number | string[]; // строка, число или массив строк
-  onClick: () => void;
+  data: Data; // Типизируем как объект Data
+  onClick: () => void; // Функция обратного вызова
 }
 
 const FinalSection = ({ data, onClick }: Props) => {
