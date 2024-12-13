@@ -6,7 +6,7 @@ import RequestLoader from '@/components/request-loader';
 import { cn } from '@/utils/cn';
 import { pxToVw } from '@/utils/pxToVw';
 import Image from 'next/image';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 const steps = [
   {
