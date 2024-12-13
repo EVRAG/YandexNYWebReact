@@ -103,25 +103,25 @@ const Desire = ({ onClick }: Props) => {
       </h1>
 
       <textarea
-        inputMode='none'
-        value={userInput}
-        onChange={handleChange}
-        // @ts-expect-error
-        onSelect={(e) => setCursorPosition(e.target.selectionStart)}
-        ref={(ref) => {
-          if (ref) {
-            ref.setSelectionRange(cursorPosition, cursorPosition);
-          }
-        }}
-        className='border-white/[0.32] bg-white/20 w-full text-white font-["5ka Sans Design"]'
-        style={{
-          borderWidth: pxToVw(4),
-          borderRadius: pxToVw(48),
-          padding: pxToVw(40),
-          minHeight: pxToVw(400),
-          fontSize: pxToVw(64),
-        }}
-      />
+  inputMode="none"
+  value={userInput}
+  onChange={handleChange}
+  // @ts-expect-error: e.target.selectionStart может быть неопределен в типах
+  onSelect={(e) => setCursorPosition(e.target.selectionStart || 0)}
+  ref={(ref) => {
+    if (ref) {
+      ref.setSelectionRange(cursorPosition, cursorPosition);
+    }
+  }}
+  className="border-white/[0.32] bg-white/20 w-full text-white font-['5ka Sans Design']"
+  style={{
+    borderWidth: pxToVw(4),
+    borderRadius: pxToVw(48),
+    padding: pxToVw(40),
+    minHeight: pxToVw(400),
+    fontSize: pxToVw(64),
+  }}
+/>
 
       <div
         className='grid grid-cols-3'
