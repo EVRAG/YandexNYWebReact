@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*:focus {
+  outline: none;
+}
+
+.react-simple-keyboard {
+  border-radius: 1.486vw !important;
+  padding: 1.486vw !important;
+  background-color: rgba(255, 255, 255, 0.32) !important;
+
+  .hg-row:not(:last-child) {
+    margin-bottom: 0.557vw !important;
+  }
+
+  .hg-button {
+    font-family: '5ka Sans Design';
+    font-size: 1.486vw !important;
+    padding: 1.3vw 1.942vw !important;
+    box-shadow: none !important;
+    border-radius: 0.743vw !important;
+    color: #482d75 !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    border: 0.093vw solid white !important;
+    margin-right: 0.557vw !important;
+  }
+}
